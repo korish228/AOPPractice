@@ -11,10 +11,11 @@ public class Main {
 
         ShapeService shapeService = ctx.getBean("service", ShapeService.class);
 
-        shapeService.getCircle().setName("Big Circle");
+//        shapeService.getCircle().setName("Big Circle");
 //        System.out.println(shapeService.getCircle().getName() );
 //        shapeService.getCircle().setNameAndReturn("Dummy");
 
+        System.out.println(shapeService.getCircle());
     }
 
 }

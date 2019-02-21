@@ -3,30 +3,50 @@ package aop.practice.demo.aspect;
 
 import aop.practice.demo.model.Circle;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 
 @Aspect
 public class LoggingAspect {
 
-    @Before("allCircleMethods()")
-    public void loggingAdvice(JoinPoint joinPoint){
+//    @Before("allCircleMethods()")
+//    public void loggingAdvice(JoinPoint joinPoint){
 //        System.out.println(joinPoint.getTarget());
-    }
+//    }
 
 //    @AfterReturning("args(name)")
 //    public void stringArgumentMethods(String name ){
 //        System.out.println("a method that take String arg has been called. The vlaue: " + name);
 //    }
 
-    @AfterThrowing(pointcut = "args(name)", throwing = "ex")
-    public void stringArgumentMethods(String name, RuntimeException ex){
-        System.out.println("a method that take String arg has been called with Exception. The vlaue: " + name + "exception is " + ex);
-    }
+//    @AfterThrowing(pointcut = "args(name)", throwing = "ex")
+//    public void stringArgumentMethods(String name, RuntimeException ex){
+//        System.out.println("a method that take String arg has been called with Exception. The vlaue: " + name + "exception is " + ex);
+//    }
+//
+//
+//    @AfterReturning(pointcut = "args(name)", returning ="returnString")
+//    public void stringArgumentMethods(String name, String returnString ){
+//        System.out.println("a method that take String arg has been called. The vlaue: " + name + " The return value is: " + returnString);
+//    }
 
+    @Around("allGetters()")
+    public Object arroiundAdvice(ProceedingJoinPoint proceedingJoinPoint){
 
-    @AfterReturning(pointcut = "args(name)", returning ="returnString")
-    public void stringArgumentMethods(String name, String returnString ){
-        System.out.println("a method that take String arg has been called. The vlaue: " + name + " The return value is: " + returnString);
+        Object retutnValue = null;
+
+        try{
+
+            System.out.println("before advice");
+            retutnValue=  proceedingJoinPoint.proceed();
+            System.out.println("after returning advice");
+
+        }catch (Throwable t){
+            System.out.println("after throwing");
+        }
+
+        System.out.println("after finally");
+        return retutnValue;
     }
 
     @Pointcut("execution(* get*(..))")

@@ -3,6 +3,9 @@ package aop.practice.demo.model;
 public class Circle {
     private String name;
 
+    public Circle() {
+        name = "undefined";
+    }
 
     public String getName() {
         return name;

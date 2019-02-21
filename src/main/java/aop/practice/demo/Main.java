@@ -11,8 +11,9 @@ public class Main {
 
         ShapeService shapeService = ctx.getBean("service", ShapeService.class);
 
-        shapeService.getCircle().setName("Circle good and big");
-        System.out.println(shapeService.getCircle().getName() );
+        shapeService.getCircle().setName("Big Circle");
+//        System.out.println(shapeService.getCircle().getName() );
+//        shapeService.getCircle().setNameAndReturn("Dummy");
 
     }
 

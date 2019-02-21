@@ -18,7 +18,7 @@ public class Context {
 
     @Bean
     public Circle circle(){
-        return new Circle("circle");
+        return new Circle();
     }
 
     @Bean
